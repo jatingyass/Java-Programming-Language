@@ -25,17 +25,20 @@ public class EditDistance {
                 }else{
                     int add = dp[i][j-1] + 1;
                     int del = dp[i-1][j] + 1;
-                    int rep = dp[i-1][j-1] + 1;
-                    dp[i][j] = Math.min(add, Math.min(del, rep));
+                    // int rep = dp[i-1][j-1] + 1;
+                    // dp[i][j] = Math.min(add, Math.min(del, rep));
+                      dp[i][j] = Math.min(add, del);
                 }
             }
         }
-
-        return dp[n][m];
+        int x = dp[n][m];
+        System.out.println("del operation is = " + (n - x));
+        System.out.println("insert operation is = " + (m - x));
+        return x;
       }
     public static void main(String args[]){
-        String word1 = "intention";
-        String word2 = "execution";
+        String word1 = "abcdef";
+        String word2 = "aceg";
 
         System.out.println(editDistance(word1, word2));
     }
